@@ -22,3 +22,12 @@ export const Content = styled.View`
 export const FieldRow = styled.View`
   flex-direction: row;
 `;
+
+export const Footer = styled.View`
+  padding: 0 24px;
+
+  min-height: 74px;
+  max-height: 74px;
+
+  background: ${({ theme }) => theme.COLORS.GRAY_7};
+`;

@@ -2,8 +2,9 @@ import { useTheme } from "styled-components/native";
 
 import { Field } from "@components/Field";
 import { MealHeader } from "@components/MealHeader";
+import { Button } from "@components/Button";
 
-import { Container, Content, FieldRow } from "./styles";
+import { Container, Content, FieldRow, Footer } from "./styles";
 
 export function MealForm() {
   const { COLORS: { GRAY_5 } } = useTheme();
@@ -44,6 +45,10 @@ export function MealForm() {
           />
         </FieldRow>
       </Content>
+
+      <Footer>
+        <Button title="Cadastrar refeição" />
+      </Footer>
     </Container>
   )
 }
