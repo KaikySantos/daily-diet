@@ -32,17 +32,6 @@ export const MealsTitle = styled.Text`
   `}
 `;
 
-export const MealsSectionTitle = styled.Text`
-  margin-top: 32px;
-  margin-bottom: 4px;
-  
-  ${({ theme }) => css`
-    color: ${theme.COLORS.GRAY_1};
-    font-size: ${theme.FONT_SIZE.LG}px;
-    font-family: ${theme.FONT_FAMILY.BOLD};
-  `}
-`;
-
 export const UserIcon = styled(UserCircle).attrs(({ theme }) => ({
   size: 40,
   color: theme.COLORS.GRAY_2,
