@@ -6,10 +6,6 @@ import {
   Logo,
   MealsSectionTitle,
   MealsTitle,
-  PercentButton,
-  PercentButtonIcon,
-  PercentButtonText,
-  PercentButtonTitle,
   UserIcon
 } from "./styles";
 
@@ -17,6 +13,7 @@ import logoImg from '@assets/logo.png';
 
 import { Button } from "@components/Button";
 import { MealCard } from "@components/MealCard";
+import { PercentButton } from "@components/PercentButton";
 
 const DATA = [
   {
@@ -99,11 +96,7 @@ export function Home() {
         <UserIcon />
       </Header>
 
-      <PercentButton>
-        <PercentButtonTitle>90,86%</PercentButtonTitle>
-        <PercentButtonText>das refeições dentro da dieta</PercentButtonText>
-        <PercentButtonIcon />
-      </PercentButton>
+      <PercentButton percentage={30.21} />
 
       <MealsTitle>Refeições</MealsTitle>
       <Button icon="add" title="Nova refeição" />
