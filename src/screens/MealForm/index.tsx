@@ -1,7 +1,9 @@
-import { MealHeader } from "@components/MealHeader";
 import { useTheme } from "styled-components/native";
 
-import { Container } from "./styles";
+import { Field } from "@components/Field";
+import { MealHeader } from "@components/MealHeader";
+
+import { Container, Content, FieldRow } from "./styles";
 
 export function MealForm() {
   const { COLORS: { GRAY_5 } } = useTheme();
@@ -9,6 +11,32 @@ export function MealForm() {
   return (
     <Container background={GRAY_5}>
       <MealHeader />
+
+      <Content>
+        <FieldRow>
+          <Field
+            label="Nome"
+          />
+        </FieldRow>
+
+        <FieldRow>
+          <Field
+            label="Descrição"
+            type="description"
+          />
+        </FieldRow>
+
+        <FieldRow>
+          <Field
+            label="Data"
+            style={{ marginRight: 10 }}
+          />
+          <Field
+            label="Hora"
+            style={{ marginLeft: 10 }}
+          />
+        </FieldRow>
+      </Content>
     </Container>
   )
 }
