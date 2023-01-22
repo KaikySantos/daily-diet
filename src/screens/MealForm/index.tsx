@@ -36,6 +36,13 @@ export function MealForm() {
             style={{ marginLeft: 10 }}
           />
         </FieldRow>
+
+        <FieldRow>
+          <Field
+            label="Está dentro da dieta?"
+            type="toggle"
+          />
+        </FieldRow>
       </Content>
     </Container>
   )
