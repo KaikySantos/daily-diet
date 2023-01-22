@@ -25,6 +25,10 @@ export function Home() {
     navigation.navigate('statistics')
   }
 
+  function handleNewMeal() {
+    navigation.navigate('mealForm')
+  }
+
   return (
     <Container>
       <Header>
@@ -36,7 +40,11 @@ export function Home() {
       <PercentButton percentage={30.21} onPress={handlePercentButton} />
 
       <MealsTitle>Refeições</MealsTitle>
-      <Button icon="add" title="Nova refeição" />
+      <Button
+        icon="add"
+        title="Nova refeição"
+        onPress={handleNewMeal}
+      />
 
       <MealsSection meals={MEALS} />
     </Container>
