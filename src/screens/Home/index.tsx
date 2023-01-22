@@ -1,3 +1,4 @@
+import { useNavigation } from "@react-navigation/native";
 import { SectionList } from "react-native";
 
 import {
@@ -18,6 +19,12 @@ import { MEALS } from "../../mock/meals";
 export type IMeals = typeof MEALS
 
 export function Home() {
+  const navigation = useNavigation()
+
+  function handlePercentButton() {
+    navigation.navigate('statistics')
+  }
+
   return (
     <Container>
       <Header>
@@ -26,7 +33,7 @@ export function Home() {
         <UserIcon />
       </Header>
 
-      <PercentButton percentage={30.21} />
+      <PercentButton percentage={30.21} onPress={handlePercentButton} />
 
       <MealsTitle>Refeições</MealsTitle>
       <Button icon="add" title="Nova refeição" />
