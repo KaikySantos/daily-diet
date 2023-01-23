@@ -1,16 +1,20 @@
 import { useNavigation } from "@react-navigation/native";
 import { BackButton, Container, Icon, Title } from "./styles";
 
-export function MealHeader() {
+type Props = {
+  title: string;
+}
+
+export function MealHeader({ title }: Props) {
   const navigation = useNavigation();
 
   function handleBackButton() {
-    navigation.navigate('home');
+    navigation.goBack();
   }
 
   return (
     <Container>
-      <Title>Nova refeição</Title>
+      <Title>{title}</Title>
 
       <BackButton onPress={handleBackButton}>
         <Icon />

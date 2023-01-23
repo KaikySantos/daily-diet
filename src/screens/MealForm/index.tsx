@@ -17,7 +17,7 @@ export function MealForm() {
 
   return (
     <Container background={GRAY_5}>
-      <MealHeader />
+      <MealHeader title="Nova refeição" />
 
       <Content>
         <FieldRow>

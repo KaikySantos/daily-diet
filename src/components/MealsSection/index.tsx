@@ -1,4 +1,5 @@
 import { SectionList } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
 import { MealCard } from "@components/MealCard";
 
@@ -11,6 +12,12 @@ type Props = {
 }
 
 export function MealsSection({ meals }: Props) {
+  const navigation = useNavigation()
+
+  function handleMealButton() {
+    navigation.navigate('meal')
+  }
+ 
   return (
     <SectionList
       sections={meals}
@@ -20,6 +27,7 @@ export function MealsSection({ meals }: Props) {
           time={item.time}
           title={item.title}
           status={item.status}
+          onPress={handleMealButton}
         />
       )}
       renderSectionHeader={({section: {title}}) => (

@@ -6,6 +6,7 @@ import { Home } from '@screens/Home'
 import { MealForm } from '@screens/MealForm'
 import { Statistics } from '@screens/Statistics'
 import { Feedback } from '@screens/Feedback'
+import { Meal } from '@screens/Meal'
 
 export function AppRoutes() {
   return (
@@ -17,6 +18,8 @@ export function AppRoutes() {
       <Screen name="mealForm" component={MealForm} />
 
       <Screen name="feedback" component={Feedback} />
+      
+      <Screen name="meal" component={Meal} />
     </Navigator>
   )
 }
