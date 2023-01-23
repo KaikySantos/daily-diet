@@ -1,3 +1,4 @@
+import { useNavigation } from "@react-navigation/native";
 import { useTheme } from "styled-components/native";
 
 import { Field } from "@components/Field";
@@ -7,7 +8,12 @@ import { Button } from "@components/Button";
 import { Container, Content, FieldRow, Footer } from "./styles";
 
 export function MealForm() {
+  const navigation = useNavigation()
   const { COLORS: { GRAY_5 } } = useTheme();
+
+  function onSubmit() {
+    navigation.navigate('feedback');
+  }
 
   return (
     <Container background={GRAY_5}>
@@ -47,7 +53,7 @@ export function MealForm() {
       </Content>
 
       <Footer>
-        <Button title="Cadastrar refeição" />
+        <Button title="Cadastrar refeição" onPress={onSubmit} />
       </Footer>
     </Container>
   )
