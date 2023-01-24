@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import { Text, TextInputProps, ViewProps } from "react-native";
 import { useTheme } from "styled-components/native";
 
@@ -7,11 +7,19 @@ import { Container, Input, InputProps, Label, ToggleButton, ToggleIcon, ToggleRo
 type Props = ViewProps & {
   label: string;
   type?: 'text' | 'description' | 'date' | 'time' | 'toggle';
+
+  value?: string;
+  onChange?: (text: string) => void;
 }
 
-export function Field({ label, type = 'text', ...rest }: Props) {
+export function Field({
+  label,
+  type = 'text',
+  value = '',
+  onChange,
+  ...rest
+}: Props) {
   const { COLORS: { GREEN_DARK, RED_DARK } } = useTheme()
-  const [toggle, setToggle] = useState<"yes" | 'not' | ''>("yes")
 
   const inputParams: TextInputProps & InputProps = {}
 
@@ -23,13 +31,13 @@ export function Field({ label, type = 'text', ...rest }: Props) {
   }
 
   function handleToggleButton(type: "yes" | 'not') {
-    setToggle(state => {
-      if (state === type) {
-        return '';
+    if (onChange) {
+      if (value === type) {
+        onChange('');
       } else {
-        return type;
+        onChange(type);
       }
-    })
+    }
   }
 
   return (
@@ -37,13 +45,18 @@ export function Field({ label, type = 'text', ...rest }: Props) {
       <Label>{label}</Label>
 
       {type !== 'toggle' ? (
-        <Input {...inputParams} />
+        <Input
+          {...inputParams}
+        
+          value={value}
+          onChangeText={onChange}
+        />
       ) : (
         <ToggleRow>
           <ToggleButton
             style={{ marginRight: 4 }}
             type="yes"
-            selected={toggle === 'yes'}
+            selected={value === 'yes'}
             onPress={() => handleToggleButton("yes")}
           >
             <ToggleIcon color={GREEN_DARK} />
@@ -52,7 +65,7 @@ export function Field({ label, type = 'text', ...rest }: Props) {
           <ToggleButton
             style={{ marginLeft: 4 }}
             type="not"
-            selected={toggle === 'not'}
+            selected={value === 'not'}
             onPress={() => handleToggleButton("not")}
           >
             <ToggleIcon color={RED_DARK} />
