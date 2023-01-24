@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
-import { useNavigation } from "@react-navigation/native";
-import { Alert, SectionList } from "react-native";
+import { useCallback, useState } from "react";
+import { useFocusEffect, useNavigation } from "@react-navigation/native";
+import { Alert } from "react-native";
 
 import {
   Container,
@@ -49,9 +49,9 @@ export function Home() {
     }
   }
 
-  useEffect(() => {
+  useFocusEffect(useCallback(() => {
     fetchMeals()
-  }, [])
+  }, []))
 
   return (
     <Container>
