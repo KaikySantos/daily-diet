@@ -66,7 +66,9 @@ export function MealForm() {
     try {
       await mealCreate(newMeal);
 
-      navigation.navigate('home');
+      navigation.navigate('feedback', {
+        type: mealWithinTheDiet === 'yes' ? 'positive' : 'negative'
+      });
     } catch (error) {
       if (error instanceof AppError) {
         Alert.alert('Nova refeição', error.message);
