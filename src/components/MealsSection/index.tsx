@@ -5,10 +5,10 @@ import { MealCard } from "@components/MealCard";
 
 import { MealsSectionTitle } from "./styles";
 
-import { IMeals } from "@screens/Home";
+import { MealDiviedBySection } from "@screens/Home";
 
 type Props = {
-  meals: IMeals
+  meals: MealDiviedBySection[]
 }
 
 export function MealsSection({ meals }: Props) {
@@ -21,12 +21,12 @@ export function MealsSection({ meals }: Props) {
   return (
     <SectionList
       sections={meals}
-      keyExtractor={(item) => item.id}
+      keyExtractor={(item) => item.id as string}
       renderItem={({item}) => (
         <MealCard
           time={item.time}
-          title={item.title}
-          status={item.status}
+          title={item.name}
+          status={item.mealWithinTheDiet === 'yes' ? 'green' : 'red'}
           onPress={handleMealButton}
         />
       )}

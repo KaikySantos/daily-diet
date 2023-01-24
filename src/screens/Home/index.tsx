@@ -1,5 +1,6 @@
+import { useEffect, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
-import { SectionList } from "react-native";
+import { Alert, SectionList } from "react-native";
 
 import {
   Container,
@@ -15,11 +16,19 @@ import { Button } from "@components/Button";
 import { PercentButton } from "@components/PercentButton";
 import { MealsSection } from "@components/MealsSection";
 
-import { MEALS } from "../../mock/meals";
-export type IMeals = typeof MEALS
+import { mealGetDividedByDates } from "@storage/meal/mealGetDividedByDates";
+
+import { MealStorageDTO } from '@storage/meal/mealStorageDTO'
+
+export type MealDiviedBySection = {
+  title: string
+  data: MealStorageDTO[]
+}
 
 export function Home() {
   const navigation = useNavigation()
+
+  const [meals, setMeals] = useState<MealDiviedBySection[]>([])
 
   function handlePercentButton() {
     navigation.navigate('statistics')
@@ -28,6 +37,21 @@ export function Home() {
   function handleNewMeal() {
     navigation.navigate('mealForm')
   }
+
+  async function fetchMeals() {
+    try {
+      const storage = await mealGetDividedByDates();
+
+      setMeals(storage);
+    } catch (error) {
+      console.log(error);
+      Alert.alert('Refeições', 'Não foi possível carregar as refeições.');
+    }
+  }
+
+  useEffect(() => {
+    fetchMeals()
+  }, [])
 
   return (
     <Container>
@@ -46,7 +70,7 @@ export function Home() {
         onPress={handleNewMeal}
       />
 
-      <MealsSection meals={MEALS} />
+      <MealsSection meals={meals} />
     </Container>
   )
 }
