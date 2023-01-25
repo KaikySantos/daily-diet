@@ -1,4 +1,5 @@
 import { mealGetAll } from './mealGetAll';
+import { mealGetDividedByDates } from './mealGetDividedByDates';
 
 export async function mealGetDashboardInfo() {
   try {
@@ -11,10 +12,26 @@ export async function mealGetDashboardInfo() {
     const offDietMeals = mealsTotal - mealsWithinTheDiet;
     const percentage = Number(((mealsWithinTheDiet * 100) / mealsTotal).toFixed(2));
 
-    console.log(mealsTotal);
+    const mealsDividedByDates = await mealGetDividedByDates();
+    let bestSequel = 0;
+    let currentSequence = 0;
+    mealsDividedByDates.forEach(mealSection => {
+      mealSection.data.forEach(meal => {
+        console.log(meal.mealWithinTheDiet);
+        if (meal.mealWithinTheDiet === 'yes') {
+          currentSequence += 1;
+        }
+      })
+
+      if (currentSequence > bestSequel) {
+        bestSequel = currentSequence;
+      }
+      currentSequence = 0;
+    })
 
     return {
       percentage,
+      bestSequel,
       mealsTotal,
       mealsWithinTheDiet,
       offDietMeals,

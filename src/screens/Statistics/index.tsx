@@ -11,6 +11,7 @@ import { mealGetDashboardInfo } from '@storage/meal/mealGetDashboardInfo';
 
 export function Statistics() {
   const [percentage, setPercentage] = useState(0);
+  const [bestSequel, setBestSequel] = useState(0);
   const [mealsTotal, setMealsTotal] = useState(0);
   const [mealsWithinTheDiet, setMealsWithinTheDiet] = useState(0);
   const [offDietMeals, setOffDietMeals] = useState(0);
@@ -25,6 +26,7 @@ export function Statistics() {
       const storage = await mealGetDashboardInfo();
 
       setPercentage(storage.percentage);
+      setBestSequel(storage.bestSequel);
       setMealsTotal(storage.mealsTotal);
       setMealsWithinTheDiet(storage.mealsWithinTheDiet);
       setOffDietMeals(storage.offDietMeals);
@@ -47,7 +49,7 @@ export function Statistics() {
 
         <CardRow>
           <Card background="default">
-            <CartTitle>0000000000000</CartTitle>
+            <CartTitle>{bestSequel}</CartTitle>
             <CardText>melhor sequência de pratos dentro da dieta</CardText>
           </Card>
         </CardRow>
