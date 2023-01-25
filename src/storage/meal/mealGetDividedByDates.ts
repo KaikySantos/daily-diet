@@ -19,7 +19,7 @@ export async function mealGetDividedByDates() {
       }
     }))
 
-    const sortedMealList = mealList.sort((a, b) => {
+    const sortedMealListDate = mealList.sort((a, b) => {
       const [dayA, monthA, yearA] = a.title.split('/').map(item => Number(item));
       const [dayB, monthB, yearB] = b.title.split('/').map(item => Number(item));
 
@@ -42,7 +42,31 @@ export async function mealGetDividedByDates() {
       }
     })
 
-    return sortedMealList;
+    const sortedMealListTime = sortedMealListDate.map((meals) => {
+      const newData = meals.data.sort((a, b) => {
+        const [hourA, minuteA] = a.time.split(':').map(item => Number(item));
+        const [hourB, minuteB] = b.time.split(':').map(item => Number(item));
+
+        if (hourA < hourB) {
+          return 1;
+        } else if (hourA > hourB) {
+          return -1;
+        }
+
+        if (minuteA < minuteB) {
+          return 1
+        } else {
+          return -1
+        }
+      })
+
+      return {
+        title: meals.title,
+        data: newData
+      }
+    })
+
+    return sortedMealListTime;
   } catch (error) {
     throw error;
   }
