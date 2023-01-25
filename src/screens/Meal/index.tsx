@@ -61,6 +61,10 @@ export function Meal() {
     )
   }
 
+  function handleEditMeal() {
+    navigation.navigate('mealForm', { mealId })
+  }
+
   const backgroundColor = meal.mealWithinTheDiet === 'yes' ? GREEN_LIGHT : RED_LIGHT;
 
   const tagIconColor = meal.mealWithinTheDiet === 'yes' ? GREEN_DARK : RED_DARK;
@@ -88,6 +92,7 @@ export function Meal() {
           icon="edit"
           title="Editar refeição"
           style={{ marginBottom: 8 }}
+          onPress={handleEditMeal}
         />
         <Button
           icon="delete"

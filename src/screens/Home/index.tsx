@@ -37,7 +37,7 @@ export function Home() {
   }
 
   function handleNewMeal() {
-    navigation.navigate('mealForm')
+    navigation.navigate('mealForm', { mealId: undefined })
   }
 
   async function fetchMeals() {
