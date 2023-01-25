@@ -19,6 +19,7 @@ import { MealsSection } from "@components/MealsSection";
 import { mealGetDividedByDates } from "@storage/meal/mealGetDividedByDates";
 
 import { MealStorageDTO } from '@storage/meal/mealStorageDTO'
+import { mealGetDashboardInfo } from "@storage/meal/mealGetDashboardInfo";
 
 export type MealDiviedBySection = {
   title: string
@@ -29,6 +30,7 @@ export function Home() {
   const navigation = useNavigation()
 
   const [meals, setMeals] = useState<MealDiviedBySection[]>([])
+  const [percentage, setPercentage] = useState(0);
 
   function handlePercentButton() {
     navigation.navigate('statistics')
@@ -43,6 +45,9 @@ export function Home() {
       const storage = await mealGetDividedByDates();
 
       setMeals(storage);
+
+      const statistics = await mealGetDashboardInfo();
+      setPercentage(statistics.percentage);
     } catch (error) {
       console.log(error);
       Alert.alert('Refeições', 'Não foi possível carregar as refeições.');
@@ -61,7 +66,7 @@ export function Home() {
         <UserIcon />
       </Header>
 
-      <PercentButton percentage={30.21} onPress={handlePercentButton} />
+      <PercentButton percentage={percentage} onPress={handlePercentButton} />
 
       <MealsTitle>Refeições</MealsTitle>
       <Button

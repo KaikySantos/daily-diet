@@ -15,7 +15,7 @@ export function PercentButton({ percentage, ...rest }: Props) {
 
   return (
     <Container isNegative={isNegative} {...rest}>
-      <Title>{percentage}%</Title>
+      <Title>{String(percentage).replace('.', ',')}%</Title>
       <Text>das refeições dentro da dieta</Text>
       <Icon color={iconColor} />
     </Container>
