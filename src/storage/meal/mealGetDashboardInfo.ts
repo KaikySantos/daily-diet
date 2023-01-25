@@ -20,14 +20,18 @@ export async function mealGetDashboardInfo() {
         console.log(meal.mealWithinTheDiet);
         if (meal.mealWithinTheDiet === 'yes') {
           currentSequence += 1;
+        } else {
+          if (currentSequence > bestSequel) {
+            bestSequel = currentSequence;
+          }
+          currentSequence = 0;
         }
       })
-
-      if (currentSequence > bestSequel) {
-        bestSequel = currentSequence;
-      }
-      currentSequence = 0;
     })
+    if (currentSequence > bestSequel) {
+      bestSequel = currentSequence;
+    }
+    currentSequence = 0;
 
     return {
       percentage,
