@@ -1,4 +1,5 @@
 import { TouchableOpacityProps } from "react-native";
+import { useTheme } from "styled-components/native";
 import { Container, Divider, Status, Time, Title } from "./styles";
 
 type Props = TouchableOpacityProps & {
@@ -8,6 +9,8 @@ type Props = TouchableOpacityProps & {
 }
 
 export function MealCard({ time, title, status, ...rest }: Props) {
+  const { COLORS: { RED_MID, GREEN_MID } } = useTheme()
+
   return (
     <Container {...rest}>
       <Time>{time}</Time>
@@ -17,9 +20,9 @@ export function MealCard({ time, title, status, ...rest }: Props) {
       <Title>{title}</Title>
 
       {status === 'red' ? (
-        <Status weight="fill" size={14} />
+        <Status color={RED_MID} />
       ) : (
-        <Status weight="fill" size={14} />
+        <Status color={GREEN_MID} />
       )}
     </Container>
   )

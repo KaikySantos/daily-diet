@@ -4,8 +4,6 @@ import { Circle } from "phosphor-react-native";
 
 export const Container = styled(SafeAreaView)`
   flex: 1;
-
-  background-color: ${({ theme }) => theme.COLORS.GREEN_LIGHT};
 `
 
 export const Content = styled.View`
@@ -74,8 +72,7 @@ export const TagText = styled.Text`
 
 export const TagIcon = styled(Circle).attrs(({ theme }) => ({
   weight: 'fill',
-  size: 12,
-  color: theme.COLORS.GREEN_DARK
+  size: 12
 }))`
   margin-right: 8px;
 `

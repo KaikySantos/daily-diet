@@ -42,5 +42,6 @@ export const Title = styled.Text`
 `;
 
 export const Status = styled(Circle).attrs(({ theme }) => ({
-  color: theme.COLORS.GREEN_MID
+  weight: 'fill',
+  size: 18
 }))``;

@@ -14,8 +14,8 @@ type Props = {
 export function MealsSection({ meals }: Props) {
   const navigation = useNavigation()
 
-  function handleMealButton() {
-    navigation.navigate('meal')
+  function handleMealButton(mealId: string) {
+    navigation.navigate('meal', { mealId })
   }
  
   return (
@@ -27,7 +27,7 @@ export function MealsSection({ meals }: Props) {
           time={item.time}
           title={item.name}
           status={item.mealWithinTheDiet === 'yes' ? 'green' : 'red'}
-          onPress={handleMealButton}
+          onPress={() => handleMealButton(item.id as string)}
         />
       )}
       renderSectionHeader={({section: {title}}) => (

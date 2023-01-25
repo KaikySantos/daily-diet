@@ -7,7 +7,9 @@ export declare global {
       feedback: {
         type: 'positive' | 'negative'
       };
-      meal: undefined;
+      meal: {
+        mealId: string
+      };
     }
   }
 }
