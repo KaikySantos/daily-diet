@@ -12,20 +12,37 @@ export async function mealGetDividedByDates() {
 
     const dates = [...new Set(meals.map(meal => meal.date))]
 
-    const mealList = dates.map(date => {
+    const mealList = (dates.map(date => {
       return {
         title: date,
         data: meals.filter(meal => meal.date === date),
       }
+    }))
+
+    const sortedMealList = mealList.sort((a, b) => {
+      const [dayA, monthA, yearA] = a.title.split('/').map(item => Number(item));
+      const [dayB, monthB, yearB] = b.title.split('/').map(item => Number(item));
+
+      if (yearA < yearB) {
+        return 1
+      } else if (yearA > yearB) {
+        return -1
+      }
+
+      if (monthA < monthB) {
+        return 1
+      } else if (monthA > monthB) {
+        return -1
+      }
+
+      if (dayA < dayB) {
+        return 1
+      } else {
+        return -1
+      }
     })
 
-    mealList.forEach(meal => {
-      console.log("DATA: ", meal.title)
-      console.log("Refeições: ")
-      meal.data.forEach(mealItem => console.log(mealItem ))
-    })
-
-    return mealList;
+    return sortedMealList;
   } catch (error) {
     throw error;
   }
